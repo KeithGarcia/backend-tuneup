@@ -11,15 +11,7 @@ import cProfile
 import pstats
 import functools
 import io
-
-
-# def profile(func):
-#     """A cProfile decorator function that can be used to
-#     measure performance.
-#     """
-#     # Be sure to review the lesson material on decorators.
-#     # You need to understand how they are constructed and used.
-#     raise NotImplementedError("Complete this decorator function")
+import timeit
 
 
 def profile(func):
@@ -44,14 +36,6 @@ def read_movies(src):
         return f.read().splitlines()
 
 
-def is_duplicate(title, movies):
-    """Returns True if title is within movies list."""
-    for movie in movies:
-        if movie == title:
-            return True
-    return False
-
-
 @profile
 def find_duplicate_movies(src):
     """Returns a list of duplicate movies from a src list."""
@@ -67,8 +51,9 @@ def find_duplicate_movies(src):
 
 def timeit_helper():
     """Part A: Obtain some profiling measurements using timeit."""
-    # YOUR CODE GOES HERE
-    pass
+    t = timeit.Timer(stmt="main()", setup="import tuneup")
+    res = t.repeat(repeat=3, number=3)
+    return res
 
 
 def main():
@@ -76,6 +61,7 @@ def main():
     result = find_duplicate_movies('movies.txt')
     print(f'Found {len(result)} duplicate movies:')
     print('\n'.join(result))
+    timeit_helper()
 
 
 if __name__ == '__main__':
