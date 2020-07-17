@@ -9,7 +9,6 @@ __author__ = "Keith Garcia, co-author was Ben McKenzie, we used the docs for pyt
 
 import cProfile
 import pstats
-import functools
 import io
 import timeit
 
@@ -52,8 +51,8 @@ def find_duplicate_movies(src):
 def timeit_helper():
     """Part A: Obtain some profiling measurements using timeit."""
     t = timeit.Timer(stmt="main()", setup="import tuneup")
-    res = t.repeat(repeat=3, number=3)
-    return res
+    res = t.repeat(repeat=7, number=3)
+    print(res)
 
 
 def main():
